@@ -147,33 +147,33 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
 
         {/* Panel 2: 4-day Outlook (Fresh Sky Azure Blue) */}
-        <div className="md:col-span-4 bg-[#bae6fd] border border-[#7dd3fc] rounded-xl p-5 card-shadow flex flex-col text-[#034063]">
-          <h2 className="font-['Manrope'] text-xl font-semibold text-[#034063] mb-4">
+        <div className="md:col-span-4 bg-[#bae6fd] border border-[#7dd3fc] rounded-xl p-5 md:p-6 card-shadow flex flex-col text-[#034063]">
+          <h2 className="font-['Manrope'] text-xl md:text-2xl font-bold text-[#034063] mb-4">
             4-day Outlook
           </h2>
-          <div className="space-y-3.5 flex-1 flex flex-col justify-between">
+          <div className="space-y-4 flex-1 flex flex-col justify-between">
             {display4Day.map((item, index) => (
               <div
                 key={item.day + index}
-                className={`flex items-center justify-between ${
-                  index < display4Day.length - 1 ? 'border-b border-[#034063]/15 pb-2.5' : ''
+                className={`flex items-center justify-between gap-3 ${
+                  index < display4Day.length - 1 ? 'border-b border-[#034063]/15 pb-3' : ''
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-2xl text-[#0284c7]">
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <span className="material-symbols-outlined text-3xl md:text-4xl text-[#0284c7] shrink-0">
                     {item.icon}
                   </span>
-                  <div>
-                    <div className="font-['Hanken_Grotesk'] text-xs font-bold uppercase tracking-wider text-[#034063]">
+                  <div className="min-w-0">
+                    <div className="font-['Manrope'] text-base md:text-lg font-extrabold uppercase tracking-wide text-[#03334e]">
                       {item.day}
                     </div>
-                    <div className="font-['Hanken_Grotesk'] text-sm text-[#0369a1] line-clamp-1">
+                    <div className="font-['Hanken_Grotesk'] text-sm md:text-base font-semibold text-[#035b8f] truncate">
                       {item.condition}
                     </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="font-['Hanken_Grotesk'] text-sm font-semibold text-[#034063]">
+                <div className="text-right shrink-0">
+                  <div className="font-['Manrope'] text-base md:text-lg font-extrabold text-[#03334e]">
                     {item.tempLow} - {item.tempHigh}°C
                   </div>
                 </div>
