@@ -104,3 +104,21 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+@keyframes tickerAnimation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-ticker {
+  animation: tickerAnimation 45s linear infinite;
+}
+
+.ticker-track:hover .animate-ticker {
+  animation-play-state: paused;
+}
+

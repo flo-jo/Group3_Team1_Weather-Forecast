@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
+import { AlertTicker } from './components/AlertTicker';
 import { BottomNav } from './components/BottomNav';
 import { DashboardView } from './components/DashboardView';
 import { AlertsView } from './components/AlertsView';
@@ -32,6 +33,9 @@ export function App() {
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenNotifications={() => setIsNotificationsOpen(true)}
       />
+
+      {/* Running Alert Marquee Ticker */}
+      <AlertTicker onNavigateToAlerts={() => setActiveTab('alerts')} />
 
       {/* Main Content Area */}
       <main className="flex-1 w-full max-w-[1200px] mx-auto p-4 md:p-8">
