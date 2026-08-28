@@ -1,0 +1,8 @@
+{
+  "name": "Group3_Team1_ Agency - Weather Dashboard",
+  "description": "Singapore NEA official weather dashboard with 24-hour forecast, 4-day outlook, rain radar visualization, UV index, warnings & advisories, and interactive AI Weather Assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
