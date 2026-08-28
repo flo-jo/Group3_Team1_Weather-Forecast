@@ -10,19 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <script type="text/javascript">
-      // Global error handler to catch cross-origin script / iframe sandbox anomalies
+      // Robust error interception to prevent third-party cross-origin scripts from bubbling Script error
+      window.onerror = function(message, source, lineno, colno, error) {
+        if (!message || message === 'Script error.' || !error) {
+          return true; // Suppress reporting to window
+        }
+        return false;
+      };
       window.addEventListener('error', function(event) {
         if (!event.error || event.message === 'Script error.') {
-          // Cross-origin script error with no details suppressed in sandboxed preview
+          event.stopImmediatePropagation();
           event.preventDefault();
           return true;
         }
-      });
+      }, true);
       window.addEventListener('unhandledrejection', function(event) {
-        if (event.reason && (event.reason.message === 'Script error.' || String(event.reason).indexOf('clarity') !== -1 || String(event.reason).indexOf('disqus') !== -1)) {
+        if (!event.reason || event.reason.message === 'Script error.' || String(event.reason).indexOf('Script error') !== -1) {
+          event.stopImmediatePropagation();
           event.preventDefault();
         }
-      });
+      }, true);
     </script>
   </head>
   <body class="bg-[#f8f9fa] text-[#191c1d] font-['Hanken_Grotesk'] antialiased min-h-screen">
