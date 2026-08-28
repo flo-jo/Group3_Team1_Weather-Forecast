@@ -68,28 +68,28 @@ export const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
         </div>
 
         {/* List */}
-        <div className="p-4 overflow-y-auto space-y-3 flex-1 bg-[#f8f9fa]">
+        <div className="p-4 overflow-y-auto space-y-3.5 flex-1 bg-[#f8f9fa]">
           {mockNotifications.map((notif) => (
             <div
               key={notif.id}
-              className={`p-4 rounded-xl border transition-all ${
+              className={`p-4 md:p-5 rounded-xl border transition-all ${
                 notif.unread
                   ? 'bg-white border-[#85b9e5] shadow-sm'
                   : 'bg-[#f3f4f5] border-[#e1e3e4] opacity-80'
               }`}
             >
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-['Manrope'] font-bold text-sm text-[#00334e]">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="font-['Manrope'] font-extrabold text-base text-[#00334e]">
                   {notif.title}
                 </span>
                 {notif.unread && (
-                  <span className="w-2 h-2 rounded-full bg-[#e63946]"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#e63946]"></span>
                 )}
               </div>
-              <p className="font-['Hanken_Grotesk'] text-xs text-[#41474e] leading-relaxed">
+              <p className="font-['Hanken_Grotesk'] text-sm text-[#41474e] leading-relaxed font-medium">
                 {notif.description}
               </p>
-              <div className="mt-2 text-[10px] text-[#71787f] font-mono">
+              <div className="mt-2.5 text-xs text-[#71787f] font-mono font-medium">
                 {notif.time}
               </div>
             </div>
@@ -103,7 +103,7 @@ export const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
               onNavigateToTab('alerts');
               onClose();
             }}
-            className="flex-1 py-2.5 rounded-xl bg-[#004a70] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#00334e] transition-colors"
+            className="flex-1 py-3 rounded-xl bg-[#004a70] text-white text-sm font-extrabold uppercase tracking-wider hover:bg-[#00334e] transition-colors"
           >
             Manage Alert Settings
           </button>
