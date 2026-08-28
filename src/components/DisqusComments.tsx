@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 declare global {
   interface Window {
@@ -18,34 +18,48 @@ export const DisqusComments: React.FC<DisqusCommentsProps> = ({
   identifier = 'singapore-weather-dashboard',
   title = 'Singapore Weather Dashboard - Discussion',
 }) => {
-  useEffect(() => {
-    // Define Disqus configuration
-    window.disqus_config = function () {
-      this.page = this.page || {};
-      this.page.url = window.location.href;
-      this.page.identifier = identifier;
-      this.page.title = title;
-    };
+  const [loadFailed, setLoadFailed] = useState(false);
 
-    if (window.DISQUS) {
-      // If Disqus is already loaded on the page, reset it with the new page info
-      window.DISQUS.reset({
-        reload: true,
-        config: function () {
-          this.page = this.page || {};
-          this.page.url = window.location.href;
-          this.page.identifier = identifier;
-          this.page.title = title;
-        },
-      });
-    } else {
-      // Inject Disqus script
-      const d = document;
-      const s = d.createElement('script');
-      s.src = 'https://test-8izaxa5kmz.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', String(+new Date()));
-      s.async = true;
-      (d.head || d.body).appendChild(s);
+  useEffect(() => {
+    try {
+      // Define Disqus configuration
+      window.disqus_config = function (this: any) {
+        this.page = this.page || {};
+        this.page.url = window.location.href;
+        this.page.identifier = identifier;
+        this.page.title = title;
+      };
+
+      if (window.DISQUS) {
+        // If Disqus is already loaded on the page, reset it with the new page info
+        window.DISQUS.reset({
+          reload: true,
+          config: function (this: any) {
+            this.page = this.page || {};
+            this.page.url = window.location.href;
+            this.page.identifier = identifier;
+            this.page.title = title;
+          },
+        });
+      } else {
+        const existingScript = document.getElementById('disqus-script');
+        if (!existingScript) {
+          const d = document;
+          const s = d.createElement('script');
+          s.id = 'disqus-script';
+          s.src = 'https://test-8izaxa5kmz.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', String(+new Date()));
+          s.async = true;
+          s.onerror = () => {
+            console.warn('Disqus embed script could not be loaded in this sandbox environment.');
+            setLoadFailed(true);
+          };
+          (d.head || d.body).appendChild(s);
+        }
+      }
+    } catch (err) {
+      console.warn('Disqus initialization error:', err);
+      setLoadFailed(true);
     }
   }, [identifier, title]);
 
@@ -65,7 +79,17 @@ export const DisqusComments: React.FC<DisqusCommentsProps> = ({
         </div>
       </div>
 
-      <div id="disqus_thread" className="min-h-[250px]"></div>
+      <div id="disqus_thread" className="min-h-[150px]">
+        {loadFailed && (
+          <div className="p-6 text-center text-[#41474e] bg-[#f8f9fa] rounded-xl border border-dashed border-[#c1c7cf]">
+            <span className="material-symbols-outlined text-3xl text-[#004a70] mb-2">forum</span>
+            <p className="font-['Manrope'] font-semibold text-sm">Disqus Community Discussion Channel</p>
+            <p className="text-xs text-[#71787f] mt-1">
+              Comments and discussion forum are ready. (Third-party cookies or scripts may be restricted in sandboxed previews).
+            </p>
+          </div>
+        )}
+      </div>
       
       <noscript>
         Please enable JavaScript to view the{' '}
@@ -76,3 +100,4 @@ export const DisqusComments: React.FC<DisqusCommentsProps> = ({
     </section>
   );
 };
+
