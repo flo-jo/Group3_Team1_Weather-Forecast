@@ -8,6 +8,7 @@ import { RadarModal } from './components/RadarModal';
 import { ExploreModal } from './components/ExploreModal';
 import { SearchModal } from './components/SearchModal';
 import { NotificationsDrawer } from './components/NotificationsDrawer';
+import { DisqusComments } from './components/DisqusComments';
 import { TabType, ExploreTopic, TownWeather } from './types';
 
 export function App() {
@@ -44,6 +45,12 @@ export function App() {
         )}
 
         {activeTab === 'alerts' && <AlertsView />}
+
+        {/* Community Disqus Discussion Thread */}
+        <DisqusComments
+          identifier={`singapore-weather-${activeTab}`}
+          title={`Singapore Weather - ${activeTab === 'dashboard' ? 'Dashboard' : 'Warnings & Advisories'}`}
+        />
       </main>
 
       {/* Mobile Bottom Navigation */}
