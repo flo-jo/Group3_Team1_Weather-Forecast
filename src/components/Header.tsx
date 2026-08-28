@@ -46,16 +46,6 @@ export const Header: React.FC<HeaderProps> = ({
             Dashboard
           </button>
           <button
-            onClick={() => setActiveTab('chatbot')}
-            className={`font-['Hanken_Grotesk'] text-xs font-bold uppercase tracking-wider pb-1 transition-all border-b-2 ${
-              activeTab === 'chatbot'
-                ? 'text-[#00334e] border-[#00334e]'
-                : 'text-[#41474e] border-transparent hover:text-[#00334e] hover:border-[#c1c7cf]'
-            }`}
-          >
-            Chatbot
-          </button>
-          <button
             onClick={() => setActiveTab('alerts')}
             className={`font-['Hanken_Grotesk'] text-xs font-bold uppercase tracking-wider pb-1 transition-all border-b-2 ${
               activeTab === 'alerts'

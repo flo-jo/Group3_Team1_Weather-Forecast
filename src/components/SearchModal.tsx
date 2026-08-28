@@ -7,7 +7,6 @@ interface SearchModalProps {
   onClose: () => void;
   onSelectTown: (town: TownWeather) => void;
   onSelectTopic: (topic: ExploreTopic) => void;
-  onAskBot: (query: string) => void;
 }
 
 export const SearchModal: React.FC<SearchModalProps> = ({
@@ -15,7 +14,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   onClose,
   onSelectTown,
   onSelectTopic,
-  onAskBot,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -64,27 +62,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
         {/* Results Body */}
         <div className="p-5 overflow-y-auto space-y-5 flex-1">
-          {/* Ask Assistant Option */}
-          {searchTerm && (
-            <div
-              onClick={() => {
-                onAskBot(`What is the weather for ${searchTerm}?`);
-                onClose();
-              }}
-              className="p-3.5 bg-[#004a70]/5 rounded-xl border border-[#004a70]/20 flex items-center justify-between hover:bg-[#004a70]/10 transition-colors cursor-pointer"
-            >
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[#004a70]">robot_2</span>
-                <div>
-                  <span className="font-['Manrope'] font-bold text-sm text-[#00334e]">
-                    Ask NEA Assistant: "{searchTerm}"
-                  </span>
-                  <span className="text-xs text-[#71787f] block">Instant meteorological Q&A</span>
-                </div>
-              </div>
-              <span className="material-symbols-outlined text-sm text-[#004a70]">arrow_forward</span>
-            </div>
-          )}
 
           {/* Towns / Weather Stations */}
           <div>

@@ -3,7 +3,7 @@ import React from 'react';
 interface NotificationsDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  onNavigateToTab: (tab: 'dashboard' | 'chatbot' | 'alerts') => void;
+  onNavigateToTab: (tab: 'dashboard' | 'alerts') => void;
 }
 
 const mockNotifications = [

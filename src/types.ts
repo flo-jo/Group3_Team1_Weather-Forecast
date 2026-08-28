@@ -1,4 +1,4 @@
-export type TabType = 'dashboard' | 'chatbot' | 'alerts';
+export type TabType = 'dashboard' | 'alerts';
 
 export interface WeatherCondition {
   tempMin: number;

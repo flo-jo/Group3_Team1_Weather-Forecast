@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { BottomNav } from './components/BottomNav';
 import { DashboardView } from './components/DashboardView';
-import { ChatbotView } from './components/ChatbotView';
 import { AlertsView } from './components/AlertsView';
 import { ForecastModal } from './components/ForecastModal';
 import { RadarModal } from './components/RadarModal';
@@ -20,12 +19,7 @@ export function App() {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   const handleSelectTown = (town: TownWeather) => {
-    // Optionally open forecast or chatbot query
     console.log('Selected town:', town.name);
-  };
-
-  const handleAskBotFromSearch = (query: string) => {
-    setActiveTab('chatbot');
   };
 
   return (
@@ -48,8 +42,6 @@ export function App() {
             onSelectTown={handleSelectTown}
           />
         )}
-
-        {activeTab === 'chatbot' && <ChatbotView />}
 
         {activeTab === 'alerts' && <AlertsView />}
       </main>
@@ -81,7 +73,6 @@ export function App() {
           setIsForecastOpen(true);
         }}
         onSelectTopic={(topic) => setSelectedTopic(topic)}
-        onAskBot={handleAskBotFromSearch}
       />
 
       <NotificationsDrawer
